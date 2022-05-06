@@ -11,7 +11,6 @@ $wachtwoord = stripcslashes($wachtwoord);
 
 //connect met de database
 $connect = mysqli_connect('localhost', 'root', '');
-mysqli_connect("localhost", "root", "");
 mysqli_select_db($connect, 'rent-a-car');
 //Querry voor de database
 $resulaat = mysqli_query($connect, "select * from klant where username = '$gebruikersnaam' and password = '$wachtwoord'") or die("failed to query database" . mysqli_error());
