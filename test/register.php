@@ -1,4 +1,4 @@
 <?php include 'includes/overall/header.php'; ?>
-<h1>Home</h1>
-<p>Just a template.</p>
+<h1>Register</h1>
+<p>Registering page</p>
 <?php include 'includes/overall/footer.php'; ?>
