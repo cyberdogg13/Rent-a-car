@@ -1,0 +1,71 @@
+header {
+    margin: auto;
+    width: 1200px;
+}
+
+nav a {
+    color: white;
+    padding: 0 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 10px
+}
+
+img#logoimg {
+    height: 200px;
+    width: 200px;
+}
+
+div#navbardiv {
+    background: gray;
+    padding: 10px;
+}
+
+body {
+    background: lightblue;
+}
+
+div.blok {
+    margin: 20px;
+    padding: 10px;
+    border: solid gray 1px;
+    border-radius: 5px;
+    background: gray;
+    color: white;
+}
+
+form, div#profile {
+    border: solid gray 1px;
+    width: 20%;
+    border-radius: 5px;
+    margin: 100px auto;
+    background: white;
+    padding: 50px;
+}
+
+div#wrapper {
+    margin: auto;
+    width: 1200px;
+    font-family: sans-serif;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+input#submitbutton {
+    color: #fff;
+    background: #337ab7;
+    padding: 5px;
+    margin-left: 69%;
+}
+
+p.listitem {
+    border: solid black 1px;
+    border-radius: 5px;
+    background: lightblue;
+    padding: 5px;
+}
+
+h1#failed{
+    text-align: center;
+    margin-top: 150px;
+}
