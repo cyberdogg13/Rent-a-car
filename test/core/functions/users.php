@@ -31,8 +31,23 @@ function connect_to_database($database = "rent-a-car"){
     return $connect;
 }
 
-function user_exists($username)
+function email_exists($email)
+{
+    //anti sql injectie
+    $email = sanitise($email);
+    //connectie maken met de database
+    $connect = connect_to_database();
+    //Querry voor de database
+    $resulaat = mysqli_query($connect, "select * from klant where email = '$email'") or die("failed to query database" . mysqli_error());
+    $row = mysqli_fetch_array($resulaat);
+    if ($row['email'] == $email) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+function user_exists($username)
 {
     //anti sql injectie
     sanitise($username);
