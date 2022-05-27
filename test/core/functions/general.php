@@ -1,4 +1,6 @@
 <?php
+
+
 function sanitise($data)
 {
     $connect = mysqli_connect('localhost', 'root', '');
