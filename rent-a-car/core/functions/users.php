@@ -9,6 +9,14 @@ function register_user($register_data)
     mysqli_query($connect, "INSERT INTO klant ($fields) VALUES ($data)");
 }
 
+function total_avalible_cars()
+{
+    $connect = connect_to_database();
+    $result = mysqli_query($connect, "SELECT COUNT(idauto) from auto");
+    $row = mysqli_fetch_array($result);
+    return $row[0];
+
+}
 
 function total_active_users()
 {
@@ -36,7 +44,6 @@ function user_data($user_id)
 
         return $data;
     }
-
 }
 
 function connect_to_database($database = "rent-a-car")

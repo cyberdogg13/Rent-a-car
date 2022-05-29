@@ -1,89 +1,86 @@
 <?php
-include 'core/init.php';
-include 'includes/overall/header.php';
-if (empty($_POST) === false) {
-    $required_fields = array('username', 'password', 'password_again', 'naam', 'email');
-    foreach ($_POST as $key => $value) {
-        if (empty($value) && in_array($key, $required_fields) === true) {
-            $errors[] = 'Fields marked with an * are required';
-            break 1;
-        }
-    }
+//gegevens ophalen
+$gebruikersnaam = $_POST['gebruikersnaam'];
+$wachtwoord = $_POST['wachtwoord'];
+$voornaam = $_POST['naam'];
+$tussenvoegsel = $_POST['tussenvoegsel'];
+$achternaam = $_POST['achternaam'];
+$adres = $_POST['adres'];
+$telefoonnummer = $_POST['telefoonnummer'];
 
-    if (empty($errors) === true) {
-        if (user_exists($_POST['username']) === true) {
-            $errors[] = 'sorry, the username \'' . $_POST['username'] . '\' is already taken';
-        }
-        if (preg_match("/\\s/", $_POST['username']) == true) {
-            $errors[] = 'your username must not contain any spaces';
-        }
-        if (strlen($_POST['password']) < 6) {
-            $errors[] = 'your password must be at least 6 characters';
-        }
-        if ($_POST['password'] !== $_POST['password_again']) {
-            $errors[] = 'your passwords dont match';
-        }
-        if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
-            $errors[] = 'a valid email adres is required';
-        }
-        if (email_exists($_POST['email']) === true) {
-            $errors[] = 'sorry, the email \'' . $_POST['email'] . '\' is already in use';
-        }
-    }
+//anti SQL injectie
+$gebruikersnaam = stripcslashes($gebruikersnaam);
+//$gebruikersnaam = mysqli_real_escape_string($gebruikersnaam);
+$wachtwoord = stripcslashes($wachtwoord);
+//$wachtwoord = mysqli_real_escape_string($wachtwoord);
+
+//checken of alle gegevens zijn ingeveult
+if ($gebruikersnaam == null || $wachtwoord == null ||$voornaam == null ||
+    $tussenvoegsel == null ||$achternaam == null ||$adres == null ||$telefoonnummer == null){
+    die("<script>window.location = './failed.html';</script>");
+}
+//connect met de database
+$connect = new mysqli('localhost', 'root', '', 'rent-a-car');
+if ($connect->connect_error) {
+    die('connection to database failed sukkel' . $connect->connect_error);
+}
+
+// checken of de username en password combo al bestaat
+$resulaat = mysqli_query($connect, "select * from klant where username = '$gebruikersnaam' and password = '$wachtwoord'") or die("failed to query database" . mysqli_error());
+$row = mysqli_fetch_array($resulaat);
+if ($row['username'] == $gebruikersnaam && $row['password'] == $wachtwoord) {
+    die('user already exists');
 }
 
 
+$sql = "INSERT INTO klant (naam, tussenvoegsel, achternaam,adres,telefoonnummer,username,password)
+ VALUES ('$voornaam','$tussenvoegsel','$achternaam','$adres','$telefoonnummer','$gebruikersnaam','$wachtwoord')";
+
+if ($connect->query($sql) === TRUE){
+    echo 'registratie succesvol voltooit!';
+}else{
+    echo 'error: '.$sql. '<br>'.$connect->error;
+}
 ?>
-<h1>Register</h1>
 
-<?php
-if (isset($_GET['success']) && empty($_GET['success'])) {
-    echo 'you have been registered succesfully!';
-} else {
-    if (empty($_POST) === false && empty($errors) === true) {
-        $register_data = array(
-            'username' => $_POST['username'],
-            'password' => $_POST['password'],
-            'naam' => $_POST['naam'],
-            'achternaam' => $_POST['achternaam'],
-            'email' => $_POST['email'],
-        );
-        register_user($register_data);
-        header('Location: register.php?success');
-        exit();
-    } else if (empty($errors) === false) {
-        echo output_errors($errors);
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" href="../styling/index.css">
+</head>
+<body>
+<header>
+    <div id="logo">
+        <img src="../images/Rent-a-car-immage.png" alt="logo" id="logoimg">
+    </div>
+    <div id="navbardiv">
+        <nav>
+            <a href="index.html">Hoofdpagina</a>
+            <a href="index.html">Ons aanbod</a>
+            <a href="./registratiepage.html">Registreren</a>
+            <a href="./loginpage.html">mijn profiel</a>
+        </nav>
+    </div>
+</header>
+<div>
+    <form action="profilepage.php" method="post">
+        <h1 id="inlog">Inloggen</h1>
 
-    ?>
-    <form action="" method="post">
-        <ul>
-            <li>Username*:<br>
-                <input type="text" name="username">
-            </li>
-            <li>
-                password*:<br>
-                <input type="text" name="password">
-            </li>
-            <li>
-                retype password*:<br>
-                <input type="text" name="password_again">
-            </li>
-            <li>
-                firstname*: <br>
-                <input type="text" name="naam">
-            </li>
-            <li>
-                lastname: <br>
-                <input type="text" name="achternaam">
-            </li>
-            <li>
-                Email*: <br>
-                <input type="text" name="email">
-            </li>
-            <input type="submit" value="Register">
-        </ul>
+        <p>
+            <label>gebruikersnaam</label>
+            <input type="text" id="gebruikersnaam" name="gebruikersnaam">
+        </p>
+        <p>
+            <label>wachtwoord</label>
+            <input type="password" id="wachtwoord" name="wachtwoord">
+        </p>
+        <p>
+            <input type="submit" id="submitbutton" value="login">
+        </p>
     </form>
-    <?php include 'includes/overall/footer.php';
-}
-?>
+</div>
+
+</body>
+</html>

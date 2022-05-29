@@ -2,7 +2,7 @@
 
 include 'core/init.php';
 
-if ($_POST['username'] && $_POST['password'] != null) {
+if ($_POST['username'] && $_POST['password'] !== null) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
