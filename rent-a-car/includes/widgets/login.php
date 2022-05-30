@@ -12,7 +12,7 @@
                     <input type="password" name="password">
                 </li>
                 <li>
-                    <input type="submit" value="submit">
+                    <input type="submit" value="inloggen" class="button">
                 </li>
                 <li>
                     <a href='register.php'>Register</a>
