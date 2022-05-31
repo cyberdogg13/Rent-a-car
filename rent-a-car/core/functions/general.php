@@ -30,7 +30,7 @@ function get_cars()
             <p>merk: '. $row['merk'] .'</p>
             <p>model: '. $row['model'] .'</p>
             <p>prijs per dag: '. $row['prijsperdag'].'</p>
-            <form action="preselll.php" method="post">
+            <form action="presell.php" method="post">
     <input type="hidden" value="'. $row['idauto'].'" name="car_id">
     <input type="submit" class="button" name="submit" value="Deze auto huren">
 </form>

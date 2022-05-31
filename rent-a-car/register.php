@@ -54,7 +54,6 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
     } else if (empty($errors) === false) {
         echo output_errors($errors);
     }
-
     ?>
     <form action="" method="post">
         <ul>
