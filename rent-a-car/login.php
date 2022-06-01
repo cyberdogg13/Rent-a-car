@@ -1,7 +1,6 @@
 <?php
 
 include 'core/init.php';
-
 if ($_POST['username'] && $_POST['password'] !== null) {
 
     $username = $_POST['username'];
@@ -9,7 +8,28 @@ if ($_POST['username'] && $_POST['password'] !== null) {
 
     if ($username == null || $password == null) {
         $errors[] = 'you need to enter both a username and a password';
-    } else if (user_exists($username) === false) {
+    } //inloggen als medewerker
+    else if (isset($_POST['medewerker'])) {
+
+        if (medewerker_exists($username) === false) {
+            $errors[] = 'we cant find this username . have you registered?';
+
+        } else {
+            $login = login_medewerker($username, $password);
+            if ($login === false) {
+                $errors[] = "the username and password combination is invalid";
+            } else {
+                $_SESSION['user_id'] = $login;
+                $_SESSION['werknemer'] = true;
+                header('Location: index.php');
+                exit();
+            }
+        }
+
+
+    }
+    //inloggen als klant
+    else if (user_exists($username) === false) {
         $errors[] = 'we cant find this username . have you registered?';
     } else if (user_active($username) === false) {
         $errors[] = 'you have not actived your account!';
@@ -22,6 +42,7 @@ if ($_POST['username'] && $_POST['password'] !== null) {
             $errors[] = "the username and password combination is invalid";
         } else {
             $_SESSION['user_id'] = $login;
+            $_SESSION['werknemer'] = false;
             header('Location: index.php');
             exit();
         }
