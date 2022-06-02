@@ -12,8 +12,8 @@
                     <input type="password" name="password">
                 </li>
                 <li>
-                    inloggen als medewerker <br>
                     <input type="checkbox" name="medewerker">
+                    <label for="medewerker">inloggen als medewerker</label>
                 </li>
                 <li>
                     <input type="submit" value="inloggen" class="button">

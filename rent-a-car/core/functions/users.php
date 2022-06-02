@@ -4,8 +4,6 @@ function register_user($register_data)
     $connect = connect_to_database();
     $fields =implode(',', array_keys($register_data));
     $data = '\'' . implode('\', \'', $register_data) . '\'';
-
-
     mysqli_query($connect, "INSERT INTO klant ($fields) VALUES ($data)");
 }
 
@@ -15,7 +13,6 @@ function total_avalible_cars()
     $result = mysqli_query($connect, "SELECT COUNT(idauto) from auto");
     $row = mysqli_fetch_array($result);
     return $row[0];
-
 }
 
 function total_active_users()
@@ -24,7 +21,6 @@ function total_active_users()
     $result = mysqli_query($connect, "SELECT COUNT(idklant) from klant where activated = 1");
     $row = mysqli_fetch_array($result);
     return $row[0];
-
 }
 
 function user_data($user_id)

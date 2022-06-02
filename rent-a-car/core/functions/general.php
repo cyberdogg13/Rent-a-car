@@ -1,4 +1,28 @@
 <?php
+function kentekencheck($kenteken)
+{
+    //anti sql injectie
+    sanitise($kenteken);
+    //connectie maken met de database
+    $connect = connect_to_database();
+    //Querry voor de database
+    $resulaat = mysqli_query($connect, "select * from auto where kenteken = '$kenteken'") or die("failed to query database" . mysqli_error());
+    $row = mysqli_fetch_array($resulaat);
+    if ($row['kenteken'] == $kenteken) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function register_car($register_data)
+{
+    $connect = connect_to_database();
+    $fields =implode(',', array_keys($register_data));
+    $data = '\'' . implode('\', \'', $register_data) . '\'';
+    mysqli_query($connect, "INSERT INTO auto ($fields) VALUES ($data)");
+}
+
 function get_selected_car($carid){
     //connectie maken met de database
     $connect = connect_to_database();

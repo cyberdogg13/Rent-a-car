@@ -1,5 +1,6 @@
 .kaart {
     border: solid lightblue 1px;
+    border-radius: 9px;
     margin: auto;
     padding: 10px;
     width: 150px;

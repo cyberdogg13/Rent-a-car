@@ -45,11 +45,12 @@ h2 {
 }
 /* Containers */
 body {
-    background:lightslategray;
+    background:whitesmoke;
     font-family:Arial;
     font-size:0.8em;
 }
 #container, footer {
+    border: solid lightblue 1px;
     background:#fff;
     width:920px;
     margin:0 auto;
@@ -81,8 +82,9 @@ footer {
 }
 /* Navigation */
 nav {
+    box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
     padding: 10px;
-    background: black;
+    background-image: linear-gradient(#0dccea, #0d70ea);
     float:left;
     padding-left: 30px;
     width: 900px;
