@@ -1,4 +1,18 @@
 <?php
+function get_id_from_email($email){
+    $connect = connect_to_database();
+    $result = mysqli_query($connect, "SELECT * from klant where email ='$email'");
+    $row = mysqli_fetch_array($result);
+    return $row['idklant'];
+
+}
+function make_resevering($register_data)
+{
+    $connect = connect_to_database();
+    $fields = implode(',', array_keys($register_data));
+    $data = '\'' . implode('\', \'', $register_data) . '\'';
+    mysqli_query($connect, "INSERT INTO resevering ($fields) VALUES ($data)");
+}
 function register_user($register_data)
 {
     $connect = connect_to_database();
@@ -10,7 +24,7 @@ function register_user($register_data)
 function total_avalible_cars()
 {
     $connect = connect_to_database();
-    $result = mysqli_query($connect, "SELECT COUNT(idauto) from auto");
+    $result = mysqli_query($connect, "SELECT COUNT(idauto) from auto where klaar_voor_gebruik =1");
     $row = mysqli_fetch_array($result);
     return $row[0];
 }

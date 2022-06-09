@@ -68,17 +68,6 @@ if (isset($_POST['upload'])) {
             <?php
         }
     }
-    // Get all the submitted data from the form
-
-
-    // Check if image file is a actual image or fake image
-    if (isset($_POST["submit"])) {
-
-    }
-
-// Check if file already exists
-
-
 }
 ?>
 <h1>Nieuwe auto registreren</h1>
