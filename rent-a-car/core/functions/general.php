@@ -50,11 +50,27 @@ function get_reseveringen()
     if (mysqli_num_rows($resulaat) > 0) {
         // output data of each row
         while ($row = mysqli_fetch_assoc($resulaat)) {
-            $user_data = user_data($row['idklant'], 'idklant', 'username', 'password', 'naam', 'tussenvoegsel', 'achternaam', 'adres','email');
+            $user_data = user_data($row['idklant'], 'idklant', 'username', 'password', 'naam', 'tussenvoegsel', 'achternaam', 'adres', 'email', 'telefoonnummer');
             $carid = $row['idauto'];
-            echo   '<div class="kaart">  <p>begin periode = <br>' . $row['begin_periode'] . '</p>
-<p> eind periode = <br>' .$row['eind_periode'] . '</p>' .  '<p> klant naam =' .$user_data['naam'] . '</p>' .
-                get_selected_car($carid);'</div>';
+            echo '<div class="reseveringskaart">'
+                . get_selected_car($carid) . ' 
+<div class="klantinfo"> 
+                   <h2>Klant informatie</h2>
+                   <p> Naam =' . $user_data['naam'] . '</p>'
+                . '<p> Achternaam =' . $user_data['achternaam'] . '</p>'
+                . '<p> Email =' . $user_data['email'] . '</p>'
+                . '<p> Telefoonnummer =' . $user_data['telefoonnummer'] . '</p>'
+                . '<p> Adres =' . $user_data['adres'] . '</p>
+</div>
+                   <p>Ophalen op = <br>' . $row['begin_periode'] . '</p>
+                   <p>Terugbrengen op = <br>' . $row['eind_periode'] . '</p>
+                   <form action="opstellen.php" method="post">
+                   <input type="hidden" value="'. $row['idklant'] .' " name="idklant">
+                   <input type="hidden" value="'. $row['idauto'] .' " name="idauto">
+                   <input type="submit" value="factuur opstellen" name="submit">
+</form>
+                   
+            </div>';
         }
     } else {
         echo "0 results";

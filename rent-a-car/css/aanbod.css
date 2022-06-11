@@ -26,3 +26,24 @@
     grid-row-gap: 20px;
     grid-column-gap: 3%;
 }
+
+#reseveringcontent {
+    width: 640px;
+    font-family: sans-serif;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-row-gap: 20px;
+    grid-column-gap: 3%;
+}
+.reseveringskaart {
+    border: solid lightblue 1px;
+    border-radius: 9px;
+    margin: auto;
+    padding: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-column-gap: 20%;
+}

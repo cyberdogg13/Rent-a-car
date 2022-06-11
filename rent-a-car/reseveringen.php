@@ -6,7 +6,7 @@ include 'includes/overall/header.php';
 <h1>Gemaakte reseveringen</h1>
 <p>
 </p>
-<div id="aanbodcontent">
+<div id="reseveringcontent">
     <?php get_reseveringen(); ?>
 </div>
 <?php
