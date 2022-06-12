@@ -23,6 +23,16 @@ function register_car($register_data)
     mysqli_query($connect, "INSERT INTO auto ($fields) VALUES ($data)");
 }
 
+function get_prijsperdag($carid)
+{
+    //connectie maken met de database
+    $connect = connect_to_database();
+    //Querry voor de database
+    $resulaat = mysqli_query($connect, "select * from auto where idauto = '$carid'") or die("failed to query database" . mysqli_error());
+    $row = mysqli_fetch_array($resulaat);
+    return $row['prijsperdag'];
+}
+
 function get_selected_car($carid)
 {
     //connectie maken met de database
@@ -52,22 +62,25 @@ function get_reseveringen()
         while ($row = mysqli_fetch_assoc($resulaat)) {
             $user_data = user_data($row['idklant'], 'idklant', 'username', 'password', 'naam', 'tussenvoegsel', 'achternaam', 'adres', 'email', 'telefoonnummer');
             $carid = $row['idauto'];
+            $ophalen = new DateTime($row['begin_periode']);
+            $terugbrengem = new DateTime($row['eind_periode']);
+            $dagen_in_bruikleen = $ophalen->diff($terugbrengem)->format("%r%a");
             echo '<div class="reseveringskaart">'
                 . get_selected_car($carid) . ' 
 <div class="klantinfo"> 
-                   <h2>Klant informatie</h2>
-                   <p> Naam =' . $user_data['naam'] . '</p>'
-                . '<p> Achternaam =' . $user_data['achternaam'] . '</p>'
-                . '<p> Email =' . $user_data['email'] . '</p>'
-                . '<p> Telefoonnummer =' . $user_data['telefoonnummer'] . '</p>'
-                . '<p> Adres =' . $user_data['adres'] . '</p>
-</div>
-                   <p>Ophalen op = <br>' . $row['begin_periode'] . '</p>
-                   <p>Terugbrengen op = <br>' . $row['eind_periode'] . '</p>
+                <p> Naam =' . $user_data['naam'] . ' ' . $user_data['tussenvoegsel'] . ' ' . $user_data['achternaam'] . '</p>
+                <p> Email =' . $user_data['email'] . '</p>
+                <p> Telefoonnummer =' . $user_data['telefoonnummer'] . '</p>
+                <p> Adres =' . $user_data['adres'] . '</p>
+                   <p>Ophalen op = ' . $row['begin_periode'] . '</p>
+                   <p>Terugbrengen op = ' . $row['eind_periode'] . '</p>
+                   <p>Aantal dagen in bruikleen = ' . $dagen_in_bruikleen . '</p>
+                   <p>Totaalprijs = ' . $row['prijs'] . '</p>
+                   </div>
                    <form action="opstellen.php" method="post">
-                   <input type="hidden" value="'. $row['idklant'] .' " name="idklant">
-                   <input type="hidden" value="'. $row['idauto'] .' " name="idauto">
-                   <input type="submit" value="factuur opstellen" name="submit">
+                   <input type="hidden" value="' . $row['idklant'] . ' " name="idklant">
+                   <input type="hidden" value="' . $row['idauto'] . ' " name="idauto">
+                   <input type="submit" class="button" value="factuur opstellen" name="submit">
 </form>
                    
             </div>';

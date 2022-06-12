@@ -3,7 +3,8 @@ function get_id_from_email($email){
     $connect = connect_to_database();
     $result = mysqli_query($connect, "SELECT * from klant where email ='$email'");
     $row = mysqli_fetch_array($result);
-    return $row['idklant'];
+    $id = $row['idklant'];
+    return $id;
 
 }
 function make_resevering($register_data)
