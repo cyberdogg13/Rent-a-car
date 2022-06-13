@@ -23,6 +23,26 @@ function register_car($register_data)
     mysqli_query($connect, "INSERT INTO auto ($fields) VALUES ($data)");
 }
 
+function get_reseveringdata($reseveringid)
+{
+    //connectie maken met de database
+    $connect = connect_to_database();
+    //Querry voor de database
+    $resulaat = mysqli_query($connect, "select * from resevering where idresevering = '$reseveringid'") or die("failed to query database" . mysqli_error());
+    $row = mysqli_fetch_array($resulaat);
+    return $row;
+}
+
+function get_cardata($carid)
+{
+    //connectie maken met de database
+    $connect = connect_to_database();
+    //Querry voor de database
+    $resulaat = mysqli_query($connect, "select * from auto where idauto = '$carid'") or die("failed to query database" . mysqli_error());
+    $row = mysqli_fetch_array($resulaat);
+    return $row;
+}
+
 function get_prijsperdag($carid)
 {
     //connectie maken met de database
@@ -80,6 +100,7 @@ function get_reseveringen()
                    <form action="opstellen.php" method="post">
                    <input type="hidden" value="' . $row['idklant'] . ' " name="idklant">
                    <input type="hidden" value="' . $row['idauto'] . ' " name="idauto">
+                   <input type="hidden" value="' . $row['idresevering'] . ' " name="idresevering">
                    <input type="submit" class="button" value="factuur opstellen" name="submit">
 </form>
                    

@@ -54,7 +54,6 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
             'telefoonnummer' => $_POST['telefoonnummer'],
             'adres' => $_POST['adres']
         );
-
         register_user($register_Data);
         $resevering_data['idklant'] = get_id_from_email($_POST['email']);
         make_resevering($resevering_data);

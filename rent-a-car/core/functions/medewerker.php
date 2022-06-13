@@ -9,11 +9,9 @@ function medewerker_data($user_id)
 
     if ($func_num_args > 1) {
         unset($func_get_args[0]);
-
         $connect = connect_to_database();
         $fields = ' ' . implode(',', $func_get_args) . ' ';
         $data = mysqli_fetch_assoc(mysqli_query($connect, "select $fields from medewerker where idmedewerker = '$user_id'"));
-
         return $data;
     }
 }

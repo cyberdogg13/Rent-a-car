@@ -35,7 +35,6 @@ if (empty($_POST) === false) {
 
 ?>
 <h1>Register</h1>
-
 <?php
 if (isset($_GET['success']) && empty($_GET['success'])) {
     echo 'you have been registered succesfully!';

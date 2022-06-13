@@ -5,8 +5,8 @@ function get_id_from_email($email){
     $row = mysqli_fetch_array($result);
     $id = $row['idklant'];
     return $id;
-
 }
+
 function make_resevering($register_data)
 {
     $connect = connect_to_database();
