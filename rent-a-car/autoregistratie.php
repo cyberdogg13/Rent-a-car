@@ -75,19 +75,29 @@ if (isset($_POST['upload'])) {
 
 <form method="POST" action="" enctype="multipart/form-data">
     auto prijs per dag*<br>
-    <input type="text" name="prijsperdag"> <br>
+    <input type="text" name="prijsperdag"> <br> <br>
     auto kleur*<br>
-    <input type="text" name="kleur"> <br>
+    <input type="text" name="kleur"> <br> <br>
     auto type*<br>
-    <input type="text" name="type"> <br>
+    <input type="text" name="type"> <br> <br>
     auto kenteken*<br>
-    <input type="text" name="kenteken"> <br>
+    <input type="text" name="kenteken"> <br> <br>
     auto merk*<br>
-    <input type="text" name="merk"> <br>
+    <select id="cars" name="merk">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+        <option value="audi">Mazda</option>
+        <option value="audi">volkswagen</option>
+        <option value="audi">KIA</option>
+        <option value="audi">Opel</option>
+        <option value="audi">Ford</option>
+    </select> <br> <br>
     auto model*<br>
-    <input type="text" name="model"> <br>
+    <input type="text" name="model"> <br><br>
     Foto van de auto*: <br>
-    <input type="file" name="uploadfile"/>
+    <input type="file" name="uploadfile"/> <br>
     <br>
     <div>
         <button type="submit" name="upload" class="button">
