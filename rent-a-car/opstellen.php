@@ -5,6 +5,7 @@ $klant_data = user_data($_POST['idklant'], 'idklant', 'username', 'password', 'n
 $auto_data = get_cardata($_POST['idauto'], 'idauto', 'kenteken', 'merk', 'model', 'type', 'kleur', 'prijsperdag');
 $resevering_data = get_reseveringdata($_POST['idresevering'], 'begin_periode','eind_periode','prijs');
 ?>
+
 <style>
     table {
         font-family: arial, sans-serif;
@@ -59,7 +60,17 @@ $resevering_data = get_reseveringdata($_POST['idresevering'], 'begin_periode','e
         binnen veertien dagen voor de aanvang van de gereserveerde periode, dient de betaling direct plaats
         te vinden</p>
     <br>
-    <input type="submit" value="printen als pdf" class="button">
 </div>
+<button class="button" id="btn-one">printen als pdf</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="core/functions/pdf.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+
 <?php
 include 'includes/overall/footer.php'; ?>

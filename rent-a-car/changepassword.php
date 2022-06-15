@@ -10,6 +10,9 @@ if (empty($_POST) === false){
             break 1;
         }
     }
+    if ($_POST['currentpassword'] === $user_data['password']){
+
+    }else{ $errors[] = 'huidig wachtwoord kom niet overeen'; }
     echo output_errors($errors);
 }
 
@@ -19,15 +22,15 @@ if (empty($_POST) === false){
 <form action="" method="post">
     <ul>
         <li>
-            Huidig wachtwoord*:
+            Huidig wachtwoord*: <br>
             <input type="text" name="currentpassword">
         </li>
         <li>
-            New wachtwoord*:
+            New wachtwoord*: <br>
             <input type="text" name="password">
         </li>
         <li>
-            New wachtwoord nogmaals*:
+            New wachtwoord nogmaals*: <br>
             <input type="text" name="password_again">
         </li>
         <li>
