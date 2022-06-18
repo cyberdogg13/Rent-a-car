@@ -69,27 +69,27 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
             <ul>
                 <li>
                     voornaam*: <br>
-                    <input type="text" name="naam" value="<?php echo $user_data['naam'] ?>">
+                    <input type="text" name="naam" value="<?php if(empty($user_data['naam']) == false){echo $user_data['naam'];} ?>">
                 </li>
                 <li>
                     tussenvoegsel: <br>
-                    <input type="text" name="tussenvoegsel" value="<?php echo $user_data['tussenvoegsel'] ?>">
+                    <input type="text" name="tussenvoegsel" value="<?php if(empty($user_data['tussenvoegsel']) == false){echo $user_data['tussenvoegsel'];} ?>">
                 </li>
                 <li>
                     achternaam*: <br>
-                    <input type="text" name="achternaam" value="<?php echo $user_data['achternaam'] ?>">
+                    <input type="text" name="achternaam" value="<?php if(empty($user_data['achternaam']) == false){echo $user_data['achternaam'];} ?>">
                 </li>
                 <li>
                     Email*: <br>
-                    <input type="text" name="email" value="<?php echo $user_data['email'] ?>">
+                    <input type="text" name="email" value="<?php if(empty($user_data['email']) == false){echo $user_data['email'];} ?>">
                 </li>
                 <li>
                     Adres*: <br>
-                    <input type="text" name="adres" value="<?php echo $user_data['adres'] ?>">
+                    <input type="text" name="adres" value="<?php if(empty($user_data['adres']) == false){echo $user_data['adres'];} ?>">
                 </li>
                 <li>
                     Telefoon nummer*: <br>
-                    <input type="text" name="telefoonnummer" value="<?php echo $user_data['telefoonnummer'] ?>">
+                    <input type="text" name="telefoonnummer" value="<?php if(empty($user_data['telefoonnummer']) == false){echo $user_data['telefoonnummer'];} ?>">
                 </li>
                 <li>
                     Ophalen op*: <br>
