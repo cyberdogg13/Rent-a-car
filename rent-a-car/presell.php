@@ -69,31 +69,31 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
             <ul>
                 <li>
                     voornaam*: <br>
-                    <input type="text" name="naam">
+                    <input type="text" name="naam" value="<?php echo $user_data['naam'] ?>">
                 </li>
                 <li>
                     tussenvoegsel: <br>
-                    <input type="text" name="tussenvoegsel">
+                    <input type="text" name="tussenvoegsel" value="<?php echo $user_data['tussenvoegsel'] ?>">
                 </li>
                 <li>
                     achternaam*: <br>
-                    <input type="text" name="achternaam">
+                    <input type="text" name="achternaam" value="<?php echo $user_data['achternaam'] ?>">
                 </li>
                 <li>
                     Email*: <br>
-                    <input type="text" name="email">
+                    <input type="text" name="email" value="<?php echo $user_data['email'] ?>">
                 </li>
                 <li>
                     Adres*: <br>
-                    <input type="text" name="adres">
+                    <input type="text" name="adres" value="<?php echo $user_data['adres'] ?>">
                 </li>
                 <li>
                     Telefoon nummer*: <br>
-                    <input type="text" name="telefoonnummer">
+                    <input type="text" name="telefoonnummer" value="<?php echo $user_data['telefoonnummer'] ?>">
                 </li>
                 <li>
                     Ophalen op*: <br>
-                    <input type="date" name="ophalen_op_date">
+                    <input type="date" name="ophalen_op_date" >
                     <input type="time" name="ophalen_op_time">
                 </li>
                 <li>
