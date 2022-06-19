@@ -70,13 +70,12 @@ function get_selected_car($carid)
     </div>';
 }
 
-function get_reseveringen()
+function get_reseveringen($sorttype)
 {
     //connectie maken met de database
     $connect = connect_to_database();
     //Querry voor de database
-    $resulaat = mysqli_query($connect, "select * from resevering") or die("failed to query database" . mysqli_error());
-
+    $resulaat = mysqli_query($connect, "select * from resevering ORDER BY $sorttype") or die("failed to query database" . mysqli_error());
     if (mysqli_num_rows($resulaat) > 0) {
         // output data of each row
         while ($row = mysqli_fetch_assoc($resulaat)) {
@@ -88,6 +87,7 @@ function get_reseveringen()
             echo '<div class="reseveringskaart">'
                 . get_selected_car($carid) . ' 
 <div class="klantinfo"> 
+                <p> Reseveringsnummer =' . $row['idresevering'] . '</p>
                 <p> Naam =' . $user_data['naam'] . ' ' . $user_data['tussenvoegsel'] . ' ' . $user_data['achternaam'] . '</p>
                 <p> Email =' . $user_data['email'] . '</p>
                 <p> Telefoonnummer =' . $user_data['telefoonnummer'] . '</p>
@@ -111,22 +111,22 @@ function get_reseveringen()
     }
 }
 
-function get_cars()
+function get_cars($sorttype)
 {
     //connectie maken met de database
     $connect = connect_to_database();
     //Querry voor de database
-    $resulaat = mysqli_query($connect, "select * from auto where klaar_voor_gebruik = 1") or die("failed to query database" . mysqli_error());
-
+    $resulaat = mysqli_query($connect, "select * from auto where klaar_voor_gebruik = 1 ORDER BY $sorttype" ) or die("failed to query database" . mysqli_error());
     if (mysqli_num_rows($resulaat) > 0) {
         // output data of each row
         while ($row = mysqli_fetch_assoc($resulaat)) {
             echo '<div class="kaart">
                     <img src="' . $row['img_location'] . '" alt="opel" style="width: 150px; height: 100px">
                     <div class="cartext">
-            <p>merk: ' . $row['merk'] . '</p>
-            <p>model: ' . $row['model'] . '</p>
-            <p>prijs per dag: ' . $row['prijsperdag'] . '</p>
+            <p>Merk: ' . $row['merk'] . '</p>
+            <p>Type: ' . $row['type'] . '</p>
+            <p>Model: ' . $row['model'] . '</p>
+            <p>Prijs per dag: ' . $row['prijsperdag'] . '</p>
             <form action="presell.php" method="post">
     <input type="hidden" value="' . $row['idauto'] . '" name="car_id">
     <input type="submit" class="button" name="submit" value="Deze auto huren">

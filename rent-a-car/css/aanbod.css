@@ -48,3 +48,6 @@
 .reseveringskaart.p {
     float: right;
 }
+#sorteersectie{
+    display: inline;
+}
