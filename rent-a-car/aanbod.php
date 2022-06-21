@@ -5,6 +5,7 @@ if (empty($_POST['sorttype'])){
     $sorttype = 'merk';
 }else{$sorttype = $_POST['sorttype'];}
 ?>
+
 <link rel="stylesheet" href="css/aanbod.css">
 <h1>Ons aanbod</h1>
 <div id="sorteersectie">
@@ -19,7 +20,6 @@ if (empty($_POST['sorttype'])){
         </select>
     </form>
 </div>
-
 
 <p>
     <?php

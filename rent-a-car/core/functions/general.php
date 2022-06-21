@@ -117,6 +117,7 @@ function get_cars($sorttype)
     $connect = connect_to_database();
     //Querry voor de database
     $resulaat = mysqli_query($connect, "select * from auto where klaar_voor_gebruik = 1 ORDER BY $sorttype" ) or die("failed to query database" . mysqli_error());
+
     if (mysqli_num_rows($resulaat) > 0) {
         // output data of each row
         while ($row = mysqli_fetch_assoc($resulaat)) {

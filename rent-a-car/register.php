@@ -34,7 +34,8 @@ if (empty($_POST) === false) {
 
 
 ?>
-<h1>Register</h1>
+<h1>Registeren</h1>
+<h6 style="color: gray">Velden met een * zijn veplicht</h6>
 <?php
 if (isset($_GET['success']) && empty($_GET['success'])) {
     echo 'you have been registered succesfully!';
@@ -44,8 +45,11 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
             'username'      => $_POST['username'],
             'password'      => $_POST['password'],
             'naam'          => $_POST['naam'],
+            'tussenvoegsel' => $_POST['tussenvoegsel'],
             'achternaam'    => $_POST['achternaam'],
             'email'         => $_POST['email'],
+            'adres'         => $_POST['adres'],
+            'telefoonnummer'=> $_POST['telefoonnummer']
         );
         register_user($register_data);
         header('Location: register.php?success');
@@ -56,28 +60,40 @@ if (isset($_GET['success']) && empty($_GET['success'])) {
     ?>
     <form action="" method="post">
         <ul>
-            <li>Username*:<br>
+            <li>Gebruikersnaam*:<br>
                 <input type="text" name="username">
             </li>
             <li>
-                password*:<br>
+                Wachtwoord*:<br>
                 <input type="text" name="password">
             </li>
             <li>
-                retype password*:<br>
+                Wachtwoord opnieuw*:<br>
                 <input type="text" name="password_again">
             </li>
             <li>
-                firstname*: <br>
+                Voornaam*: <br>
                 <input type="text" name="naam">
             </li>
             <li>
-                lastname: <br>
+                Tussenvoegsel: <br>
+                <input type="text" name="tussenvoegsel">
+            </li>
+            <li>
+                Achernaam: <br>
                 <input type="text" name="achternaam">
             </li>
             <li>
                 Email*: <br>
                 <input type="text" name="email">
+            </li>
+            <li>
+                Adres: <br>
+                <input type="text" name="adres">
+            </li>
+            <li>
+                Telefoonnummer: <br>
+                <input type="text" name="telefoonnummer">
             </li>
             <input type="submit" value="Register">
         </ul>
